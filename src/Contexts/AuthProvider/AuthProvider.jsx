@@ -8,36 +8,26 @@ const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
 
-    const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-
-    // const onCaptchaVerify = window.recaptchaVerifier = new RecaptchaVerifier('recaptcha-container', {
-    //     'size': 'normal',
-    //     'callback': (response) => {
-
-    //     },
-    //     'expired-callback': () => {
-
-    //     }
-    //   }, auth);
-
-    const createUser = (email, password) => {
-        setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password);
-    };
+    const [user, setUser] = useState([]);
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, currentUser => {
-            setUser(currentUser);
-            setLoading(false);
-        });
-
-        return () => {
-            return unsubscribe;
+        const userData = async () => {
+            const data = await fetch("http://localhost:5000/userData", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    token: window.localStorage.getItem("token"),
+                })
+            })
+            const result = await data.json();
+            setUser(result.data);
         }
+        userData();
     }, []);
 
-    const authInfo = { name: "Md Forhad Hossain Rahi" };
+    const authInfo = { user };
 
     return (
         <AuthContext.Provider value={authInfo}>

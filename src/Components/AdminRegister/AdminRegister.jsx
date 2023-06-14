@@ -12,20 +12,26 @@ const AdminRegister = () => {
         const phone = form.phone.value;
         const password = form.password.value;
 
-        fetch("http://localhost:5000/register",{
-            method:"POST",
-            headers:{
-                "Content-Type":"application/json"
+        fetch("http://localhost:5000/register", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
             },
-            body:JSON.stringify({
+            body: JSON.stringify({
                 uname,
                 email,
                 phone,
                 password
             })
         })
-        .then((res) => {res.json()})
-        .then((data) => data)
+            .then((res) => res.json())
+            .then((data) => {
+                console.log(data)
+                if (data.status == "Ok") {
+                    alert("User Created Successful");
+                    window.location.href = "./";
+                }
+            })
         form.reset();
     };
     return (
