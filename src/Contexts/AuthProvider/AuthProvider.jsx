@@ -10,6 +10,8 @@ const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState([]);
 
+    const isLoggedIn = window.localStorage.getItem("loggedIn");
+
     useEffect(() => {
         const userData = async () => {
             const data = await fetch("http://localhost:5000/userData", {
@@ -27,7 +29,12 @@ const AuthProvider = ({ children }) => {
         userData();
     }, []);
 
-    const authInfo = { user };
+    const logOut = () => {
+        window.localStorage.clear();
+        window.location.href="./login";
+    }
+
+    const authInfo = { user, logOut, isLoggedIn };
 
     return (
         <AuthContext.Provider value={authInfo}>
