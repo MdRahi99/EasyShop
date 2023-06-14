@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../Contexts/AuthProvider/AuthProvider';
 
 const Header = () => {
+    const {name} = useContext(AuthContext);
     return (
         <div>
-            This is Header
+            {name}
         </div>
     );
 };
