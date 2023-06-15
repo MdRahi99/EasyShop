@@ -7,6 +7,7 @@ import AdminDashboard from '../Components/AdminDashboard/AdminDashboard';
 import AdminRegister from '../Components/AdminRegister/AdminRegister';
 import AllProducts from '../Components/AdminDashboard/AllProducts/AllProducts';
 import AllCustomers from '../Components/AdminDashboard/AllCustomers/AllCustomers';
+import ProductDetails from '../Components/AdminDashboard/AllProducts/ProductDetails';
 
 const router = createBrowserRouter([
     {
@@ -29,6 +30,11 @@ const router = createBrowserRouter([
                 path: "/all-products",
                 loader: async() => await fetch('http://localhost:5000/all-products'),
                 element: <AllProducts></AllProducts>
+            },
+            {
+                path: "/product-details/:_id",
+                loader: async({params}) => await fetch(`http://localhost:5000/product-details/${params._id}`),
+                element: <ProductDetails></ProductDetails>
             },
             {
                 path: "/all-customers",
