@@ -11,11 +11,11 @@ const AdminLayout = () => {
         <div className='flex flex-col'>
             {
                 isLoggedIn == 'true' ?
-                    <div className='grid grid-cols-12'>
-                        <div className='col-span-2 bg-white'>
+                    <div className='grid lg:grid-cols-12'>
+                        <div className='col-span-12 lg:col-span-2'>
                             <Header></Header>
                         </div>
-                        <div className='col-span-10 bg-black'>
+                        <div className='col-span-12 lg:col-span-10 bg-slate-900'>
                             <Outlet></Outlet>
                         </div>
                     </div>

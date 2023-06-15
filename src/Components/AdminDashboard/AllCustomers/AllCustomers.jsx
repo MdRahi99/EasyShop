@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProtectedRoute = () => {
+const AllCustomers = () => {
     return (
         <div>
             
@@ -8,4 +8,4 @@ const ProtectedRoute = () => {
     );
 };
 
-export default ProtectedRoute;
+export default AllCustomers;
